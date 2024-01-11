@@ -1,0 +1,21 @@
+<script setup>
+import { useRouter } from "vue-router";
+import { Hanko } from "@teamhanko/hanko-elements";
+
+const hankoApi = import.meta.env.VITE_HANKO_API_URL;
+
+const router = useRouter();
+const hanko = new Hanko(hankoApi);
+
+const logout = () => {
+  hanko.user.logout().catch(() => {
+    // handle error
+  })
+  router.push("/login")
+}
+
+</script>
+
+<template>
+  <button @click="logout">Logout</button>
+</template>
